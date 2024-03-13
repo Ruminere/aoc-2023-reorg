@@ -1,3 +1,6 @@
+'''
+Python code for both parts of question 17.
+'''
 import sys, numpy
 sys.path.append('../')
 from aoctools.aoc_functions import *
@@ -14,6 +17,7 @@ def main():
     ans1 = 0
     ans2 = 0
 
+    # setup the grid from the input
     grid = ftg(file, to_int=True)
 
     ans1 = dijkstra(grid)
@@ -28,7 +32,11 @@ def main():
 
 def get_neighbors(grid: list, row: int, col: int, curr_dir: str, times: int):
     '''
-    At most 3 times in single direction
+    Returns valid grid coordinates.
+
+    If part 1, make sure that we have not headed in the same direction more than 3 times.
+    
+    If part 2, make sure that we have headed in the same direction at least 4 times before turning and that we have not headed in the same direction more than 10 times.
     '''
     if not in_bounds(grid, row, col):
         raise ValueError("grid coordinate is out of bounds")
@@ -36,16 +44,16 @@ def get_neighbors(grid: list, row: int, col: int, curr_dir: str, times: int):
     coords = []
     keys = {"U":0,"L":1,"D":2,"R":3}
     for key in keys:
-        # no reverse
+        # can't go in the reverse direction
         if curr_dir != "" and (keys[key]+2)%4 == keys[curr_dir]:
             continue
-        # direction step check
-        if part == 1 and (key == curr_dir and times == 3):
+        # check for valid directions
+        if part == 1 and (key == curr_dir and times == 3): # must turn
             continue
         if part == 2 and curr_dir != "":
-            if key == curr_dir and times == 10:
+            if key == curr_dir and times == 10: # must turn
                 continue
-            if key != curr_dir and times < 4:
+            if key != curr_dir and times < 4: # must continue in the same direction
                 continue
         t = times + 1 if key == curr_dir else 1
         coord = directions[key]
@@ -56,6 +64,9 @@ def get_neighbors(grid: list, row: int, col: int, curr_dir: str, times: int):
     return coords
 
 def dijkstra(grid):
+    '''
+    Return the least cost possible out of all paths possible from the grid and constraints provided in the problem.
+    '''
     start = (0,0)
     end = (len(grid)-1, len(grid[0])-1)
 
@@ -69,7 +80,7 @@ def dijkstra(grid):
             if part == 1:
                 return cost
             elif part == 2:
-                if 4<=current[2]<=10:
+                if 4<=current[2]<=10: # must be in range to stop
                     return cost
                 else:
                     continue
@@ -88,4 +99,5 @@ def dijkstra(grid):
     return cost
 # ==================================================
 
-main()
+if __name__ == '__main__':
+    main()
