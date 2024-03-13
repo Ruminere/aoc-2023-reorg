@@ -1,7 +1,6 @@
 '''
-Python code for the first part of question 21.
+Python code for the second part of question 21.
 '''
-
 import sys
 sys.path.append('../')
 from aoctools.aoc_functions import *
@@ -17,7 +16,7 @@ def main():
 
     ans2 = 0
 
-    # setup each grid
+    # setup the grid from the input
     grid = ftg(file)
     for i in rlen(grid):
         for j in rlen(grid[i]):
@@ -64,7 +63,9 @@ def main():
 
 def gn(grid: list, row: int, col: int):
     '''
-    Short for "grid neighbors". Takes a grid coordinate and returns surrounding coordinates. To make the function more flexible for the purposes of the problem, coordinates can take on values that are outside the dimensions of the grid.
+    Short for "grid neighbors"; modified from the function found in aoctools.
+    
+    Takes a grid coordinate and returns surrounding coordinates. To make the function more flexible for the purposes of the problem, coordinates can take on values that are outside the dimensions of the grid.
     '''
     coords = []
     keys = ["U","D","L","R"]

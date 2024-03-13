@@ -1,7 +1,6 @@
 '''
 Python code for the first part of question 21.
 '''
-
 import sys
 sys.path.append('../')
 from aoctools.aoc_functions import *
@@ -16,6 +15,7 @@ def main():
 
     ans1 = 0
 
+    # setup the grid from the input
     grid = ftg(file)
     for i in rlen(grid):
         for j in rlen(grid[i]):
@@ -30,6 +30,9 @@ def main():
 # ==================================================
 
 def bfs(grid, start):
+    '''
+    Returns the number of plots the elf can reach after 64 steps.
+    '''
     to_explore = deque()
     to_explore.append(start)
     for _ in range(64):
@@ -46,4 +49,5 @@ def bfs(grid, start):
 
 # ==================================================
 
-main()
+if __name__ == '__main__':
+    main()
