@@ -1,3 +1,7 @@
+'''
+Python code for the first part of question 21.
+'''
+
 import sys
 sys.path.append('../')
 from aoctools.aoc_functions import *

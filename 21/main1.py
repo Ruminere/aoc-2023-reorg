@@ -1,3 +1,7 @@
+'''
+Python code for the first part of question 21.
+'''
+
 import sys
 sys.path.append('../')
 from aoctools.aoc_functions import *
@@ -13,6 +17,7 @@ def main():
 
     ans2 = 0
 
+    # setup each grid
     grid = ftg(file)
     for i in rlen(grid):
         for j in rlen(grid[i]):
@@ -22,10 +27,16 @@ def main():
     
     nums = bfs(grid,start)
 
+    # # plotting for visualization purposes - this is what made me realize that the graph was likely quadratic
+    # plt.title("Number of Possible Positions after Steps")
+    # plt.xlabel("Steps")
+    # plt.ylabel("Possible Positions")
     # plt.plot(nums)
     # plt.savefig("nums.png")
 
-    # === Wolfram stuff ===
+    # # === Wolfram stuff ===
+    # # gives you the exact format you need to paste into this site:
+    # # https://www.wolframalpha.com/input?i=interpolating+polynomial+calculator
     # s = "{"
     # for i in rlen(nums):
     #     if i % 131 in [65]:
@@ -33,16 +44,17 @@ def main():
     # s = s[:len(s)-1] + "}"
     # print(s)
 
-    # f = lambda x: int((14812 * x**2)/17161 + (29615*x)/17161 + 2524/17161)
+    # # replace a, b, c with the coefficients that Wolfram gives you for your input
+    # a = 14812/17161
+    # b = 29615/17161
+    # c = 2524/17161
+    # f = lambda x: int(a*x**2 + b*x + c)
     # ans2 = f(26501365)
 
     # === numpy stuff ===
-    x = []
-    y = []
-    for i in rlen(nums):
-        if i % 131 == 65:
-            x.append(i)
-            y.append(nums[i])
+    # this code automatically does the calculations so you don't need to go to an external site
+    x = list(filter(lambda i: i % 131 == 65, rlen(nums)))
+    y = [nums[i] for i in x]
     p = poly.polyfit(x,y,2)
     ans2 = int(poly.polyval(26501365,p))-1
 
@@ -52,9 +64,7 @@ def main():
 
 def gn(grid: list, row: int, col: int):
     '''
-    Takes a grid coordinate and returns either:
-    - surrounding coordinates, or
-    - surrounding values.
+    Short for "grid neighbors". Takes a grid coordinate and returns surrounding coordinates. To make the function more flexible for the purposes of the problem, coordinates can take on values that are outside the dimensions of the grid.
     '''
     coords = []
     keys = ["U","D","L","R"]
@@ -66,17 +76,20 @@ def gn(grid: list, row: int, col: int):
     return coords
 
 def bfs(grid, start):
+    '''
+    Returns an array of the total number of plots that the elf can reach over a range of steps.
+    '''
     to_explore = deque()
     to_explore.append(start)
-    nums = [0]
+    nums = [0] # stores the number of possible plot locations after every step
     for i in range(1,131*2+66):
         to_explore_new = deque()
         while to_explore:
             current = to_explore.popleft()
             nbrs = gn(grid, *current)
             for nbr in nbrs:
-                simple = (nbr[0]%131, nbr[1]%131)
-                if grid[simple[0]][simple[1]] == "#":
+                simple = (nbr[0]%131, nbr[1]%131) # accounts for being outside the primary grid
+                if grid[simple[0]][simple[1]] == "#": # don't add to queue if rock
                     continue
                 to_explore_new.append(nbr)
         to_explore = deque(set(to_explore_new))
@@ -85,4 +98,5 @@ def bfs(grid, start):
 
 # ==================================================
 
-main()
+if __name__ == '__main__':
+    main()
