@@ -1,0 +1,4 @@
+# Problem 8
+I thought the `(XXX, XXX)` format would be a good way to use the `ast.literal_eval()` function I'd literally just learned this morning, but forgot it wouldn't work when the elements weren't numbers. Due to this, I wasted quite a lot of time on part 1 and got rank 5011.
+
+Part 2 was a lot better, though, since it was almost the same as part 1 in terms of booleans and since I realized the trick pretty quickly. In fact, I got rank 640 this time! That would be my first time breaking sub-2000, not to say sub-1000. I would assume most people didn't realize the trick, and since the answer were really high the naive solution would've been really slow.

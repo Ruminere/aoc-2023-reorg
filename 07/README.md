@@ -1,0 +1,4 @@
+# Problem 7
+Given how the past few odd days have gone, I expected this problem to be quite hard; in fact, I was torn between studying for OChem/Hon LinAlg and staying up late for AoC. I ultimately decided to do AoC and sleep if I did not finish within the hour.
+
+Which was why I was happy that today's problem wasn't hard! I had a Bubble Sort-like implementation because I used a function where I split ties between types of hands and Bubble Sort was the easiest sorting algorithm to implement. However, I've since learned that, had I converted cards to numbers and put hand type first, I could've just use the Python sorting function once and saved multiple lines of code. It was nice, though.

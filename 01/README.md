@@ -1,0 +1,2 @@
+# Problem 1
+My Python is slightly rusty. I've since learned a much cleaner way for part 1 where I simply iterate across each character in the string, and a much cleaner way for part 2 where I just use `str.replace()` for all the words. It was nice getting doing AoC again, though, after not doing it in 2022.

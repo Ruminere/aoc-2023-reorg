@@ -1,0 +1,2 @@
+# Problem 6
+Really quick problem. I was pretty sleepy today, though, so I felt a lot slower, so that was appreciated. I did not realize that I could use the quadratic formula instead for a much better solution (instead of using brute force), but oh well.
