@@ -6,6 +6,11 @@
 
 Ranking and time honestly don't really matter at this point because I gave up on doing the problems when they dropped. I just find them intriguing, in a way.
 
+<details>
+    <summary>Part 2 Context</summary>
+    This part of the question requires you to go in the same direction for at least 4 steps before turning and to turn at 10 steps. You will also have to have been going in the same direction for at least 4 steps before stopping at the end.
+</details>
+
 ## Speeds
 Part 1:
 ```
