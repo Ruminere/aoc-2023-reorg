@@ -1,3 +1,6 @@
+'''
+Python code for both parts of question 12.
+'''
 import sys
 sys.path.append('../')
 from aoctools.aoc_functions import *
@@ -13,23 +16,19 @@ def main():
     lines = []
     with open(filename + ".in") as fh:
         for line in fh:
-            line = line.strip()
-            lines.append(line)
+            spring_raw, cont_raw = line.strip().split()
+            cont_raw = [int(i) for i in cont_raw.split(",")]
+            # set up part 2
+            spring = spring_raw
+            cont = [i for i in cont_raw]
+            for _ in range(4):
+                spring += "?" + spring_raw
+                cont.extend(cont_raw)
 
-    for line in lines:
-        spring_raw, cont_raw = line.split()
-        cont_raw = [int(i) for i in cont_raw.split(",")]
-        # set up part 2
-        spring = spring_raw
-        cont = [i for i in cont_raw]
-        for _ in range(4):
-            spring += "?" + spring_raw
-            cont.extend(cont_raw)
-
-        ans1 += num_arrangements(spring_raw, cont_raw, 0,0,0)
-        calculated.clear()
-        ans2 += num_arrangements(spring, cont, 0,0,0)
-        calculated.clear()
+            ans1 += num_arrangements(spring_raw, cont_raw, 0,0,0)
+            calculated.clear()
+            ans2 += num_arrangements(spring, cont, 0,0,0)
+            calculated.clear()
     
     print("1:", ans1)
     print("2:", ans2)
@@ -71,5 +70,6 @@ def num_arrangements(spring, cont, i, ci, l):
     return ans
 
 # ==================================================
+
 if __name__ == '__main__':
     main()
