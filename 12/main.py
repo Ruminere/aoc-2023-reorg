@@ -19,6 +19,7 @@ def main():
     for line in lines:
         spring_raw, cont_raw = line.split()
         cont_raw = [int(i) for i in cont_raw.split(",")]
+        # set up part 2
         spring = spring_raw
         cont = [i for i in cont_raw]
         for _ in range(4):
@@ -38,9 +39,12 @@ def main():
 calculated = {}
 def num_arrangements(spring, cont, i, ci, l):
     '''
-    i spring index
-    ci container index
-    l damaged length
+    Returns the total number of possible arrangements given a row of springs (spring) and group arrangements (cont).
+
+    Other variables:
+    i - spring index
+    ci - container index
+    l - damaged length
     '''
     key = (i,ci,l)
 
@@ -55,7 +59,7 @@ def num_arrangements(spring, cont, i, ci, l):
         return 0
 
     ans = 0
-    if spring[i] in [".", "?"]: # good
+    if spring[i] in [".", "?"]: # good spring
         if l == 0: # repeated .
             ans += num_arrangements(spring, cont, i+1, ci, 0)
         elif ci < len(cont) and l == cont[ci]: # end of damaged segment
@@ -67,5 +71,5 @@ def num_arrangements(spring, cont, i, ci, l):
     return ans
 
 # ==================================================
-
-main()
+if __name__ == '__main__':
+    main()
