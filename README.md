@@ -13,12 +13,11 @@ Due to copyright concerns, u/topaz (the creator of AoC) has requested for us to 
 - Scroll to the bottom of the page.
 - Copy the input to the corresponding question folder and create a file called `actual.in`.
 - Simply execute the makefile by typing `make`.
-This is what a correctly set up folder directory might look like:
+Below is what a correctly set up folder directory might look like. The important part is where the `actual.in` file is: each `actual.in` file must be in the same directory as its corresponding `main.py` file. Certain directories have an additional `main1.py` folder; in that case, the code for part 1 of the question is in `main.py`, while the code for part 2 is in `main1.py`.
 ```
 ├── 11
 │   ├── README.md
 │   ├── actual.in
 │   ├── main.py
-│   ├── makefile
-│   └── test.in
+│   └── makefile
 ```
